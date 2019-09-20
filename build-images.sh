@@ -2,7 +2,9 @@
 
 # kudos https://dev.to/zeerorg/build-multi-arch-docker-images-on-travis-5428
 
-echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin
+
+docker info
 
 # Build for amd64 and push
 buildctl build --frontend dockerfile.v0 \
