@@ -37,19 +37,6 @@ docker manifest push fragaria/python-openresty:1.15.8
 
 # latest
 
+docker pull fragaria/python-openresty:1.15.8
 docker tag fragaria/python-openresty:1.15.8 fragaria/python-openresty:latest
-docker tag fragaria/python-openresty:1.15.8-armhf fragaria/python-openresty:latest-armhf
-docker tag fragaria/python-openresty:1.15.8-amd64 fragaria/python-openresty:latest-amd64
-
 docker push fragaria/python-openresty:latest
-docker push fragaria/python-openresty:latest-armhf
-docker push fragaria/python-openresty:latest-amd64
-
-docker manifest create fragaria/python-openresty:latest \
-            fragaria/python-openresty:latest-amd64 \
-            fragaria/python-openresty:latest-armhf
-
-docker manifest annotate fragaria/python-openresty:latest fragaria/python-openresty:latest-armhf --arch arm
-docker manifest annotate fragaria/python-openresty:latest fragaria/python-openresty:latest-amd64 --arch amd64
-
-docker manifest push fragaria/python-openresty:latest
