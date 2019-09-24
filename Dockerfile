@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.6-slim as builder
 
 ENV \
   DEBCONF_FRONTEND=noninteractive \
@@ -23,7 +23,11 @@ RUN \
   make clean && \
   cd .. && \
   rm -rf openresty-* && \
-  ln -s /usr/local/openresty/bin/openresty /usr/local/bin/openresty && \
   ldconfig
+
+FROM python:3.6-slim
+
+COPY --from=builder /usr/local/openresty /usr/local/openresty
+RUN ln -s /usr/local/openresty/bin/openresty /usr/local/bin/openresty
 
 CMD ["openresty"]
